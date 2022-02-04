@@ -17,6 +17,7 @@ main{
     background-color: rgb(202, 188, 167);
     border-radius: 5px;
     color:rgb(202, 188, 167);
+    box-shadow: 5px 5px 8px rgb(43, 42, 42);
    
 }
 .operator, .number, .operator1{
@@ -26,6 +27,7 @@ main{
     align-items: center;
     background-color: rgb(43, 42, 42);
     font-size: 22px;
+    color:rgb(202, 188, 167)
     }
     .operator:hover, .number:hover, .operator1:hover{
         background-color: rgb(0, 0, 0);

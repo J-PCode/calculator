@@ -1,22 +1,88 @@
-const taul =[]; // values [num, num, operand]
-function add(taul){
-    return tulos = taul[0] + taul[1]
+
+let x = "0"; //previous number
+let y = "0"; //current number
+let operator;
+const button = document.querySelectorAll("button");
+
+
+function add(x,y){
+    return x = x + y;
     }
-function subtract(taul){
-    return tulos = taul[0] - taul[1];
+function subtract(x,y){
+    return x = x - y;
 }
-function multiply(taul){
-    return tulos = taul[0] / taul[1];
+function multiply(x,y){
+    return x = x * y;
 }
-function divide(taul){
-    return tulos = taul[0] / taul[1];
+function divide(x,y){
+    return x = x / y;
+}
+function operateClear(){
+    x= "0";
+    y = "0";
+    operator ="";
 }
 
-//operateen taitaa tulla eventlistenerit ym
-function operate(taul){
-    taul[2] = operator //addEventListener()
-    taul[0] = "value1"
-    taul[1] = "value2"
+function operate(button){
+    if(x === "0"){
+        x = y;
+        operator = button.innerText;
+     }
 
-    //voisiko tässä käyttää reducea? sehän laskee viimeisimmän arvon ja nykyisen arvon
+//calculations start
+      else {
+        x = Number(x)
+        y = Number(y)
+    if(operator ==="+"){
+        x = Math.round(add(x,y)*100) / 100;   
+    }
+    else if(operator ==="-"){
+        x = Math.round(subtract(x,y)*100) / 100;
+        }
+    else if(operator ==="*"){
+        x = Math.round(multiply(x,y)*100) / 100;
+      }
+    else if(operator ==="/"){
+            if(operator === "/" && y == "0"){
+                console.log("you cant divide with zero")
+                document.getElementById("screen").innerText = "ERROR";
+                return "";
+            }  
+            else{
+        x = Math.round(divide(x,y) * 100) / 100;
+            }
+    }
+    if(operator != "=")
+    operator = button.innerText;
 }
+    document.getElementById("screen").innerText = x;
+    y = "";
+   if(button.id == "operate"){
+       operateClear()
+   }
+   if(button.id == "clear"){
+   operateClear()
+   document.getElementById("screen").innerText = "0";
+}}
+//calculations end
+
+function getNumber(button){
+if(y === "0"){
+y = button.innerText;
+return y;
+}
+    y += button.innerText;
+    return y;
+};
+
+// root starts here
+button.forEach(button => {
+    button.addEventListener("click", () =>{
+        if(button.classList == "number"){
+        document.getElementById("screen").innerText = getNumber(button)
+        }
+        else if(button.className == "operator" || "operator1"){
+            operate(button) 
+    }
+});
+});
